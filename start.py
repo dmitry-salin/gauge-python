@@ -1,4 +1,3 @@
-import os
 import platform
 import sys
 import threading
@@ -42,7 +41,7 @@ def load_implementations():
 
 def _handle_detached():
     logger.info("No debugger attached. Stopping the execution.")
-    os._exit(1)
+    sys.exit(1)
 
 
 def start():
@@ -63,7 +62,7 @@ def start():
     t = threading.Thread(name="listener", target=handler.wait_for_kill_event)
     t.start()
     t.join()
-    os._exit(0)
+    sys.exit(0)
 
 
 if __name__ == '__main__':
