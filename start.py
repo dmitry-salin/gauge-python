@@ -8,7 +8,7 @@ from threading import Timer
 
 import grpc
 import debugpy
-from getgauge import handlers, logger, processor
+from getgauge import handlers, logger
 from getgauge.impl_loader import copy_skel_files
 from getgauge.messages import services_pb2_grpc as spg
 from getgauge.static_loader import load_files
