@@ -3,7 +3,6 @@ import json
 import os
 import shutil
 import sys
-from datetime import date
 from subprocess import call
 
 cwd = os.getcwd()
@@ -50,6 +49,7 @@ def generate_package():
     create_setup_file()
     fnull = open(os.devnull, 'w')
     call([sys.executable, 'setup.py', 'sdist'], stdout=fnull, stderr=fnull)
+    call([sys.executable, 'setup.py', 'bdist_wheel'], stdout=fnull, stderr=fnull)
     fnull.close()
 
 
