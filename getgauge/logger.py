@@ -1,5 +1,5 @@
 import json
-import sys, os
+import sys
 
 
 def debug(message):
@@ -20,7 +20,7 @@ def warning(message):
 
 def fatal(message):
     _print('fatal', message, True)
-    os._exit(1)
+    sys.exit(1)
 
 
 def _print(level, message, is_error=False):
