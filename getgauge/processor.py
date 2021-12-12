@@ -77,7 +77,15 @@ def _add_message_and_screenshots(response):
 def process_execution_starting_request(request, clear=True):
     if clear:
         registry.clear()
-        load_impls(get_step_impl_dirs())
+        try:
+            load_impls(get_step_impl_dirs())
+        except Exception as e:
+            message = 'Exception occurred while loading step implementations.\n{}'.format(e.__str__())
+            response = create_execution_status_response()
+            response.executionResult.failed = True
+            response.executionResult.errorMessage = message
+            response.executionResult.stackTrace = traceback.format_exc()
+            return response
     execution_info = create_execution_context_from(
         request.currentExecutionInfo)
     response = run_hook(request, registry.before_suite(), execution_info)
